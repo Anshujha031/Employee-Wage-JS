@@ -210,3 +210,36 @@ while (totalEmpHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS)
 
 
 console.log("Employee Daily Records:", empDailyRecords);
+
+// uc 11A
+
+let totalWages = empDailyRecords
+    .filter(emp => emp.dailyWage > 0)
+    .reduce((total, emp) => total + emp.dailyWage, 0);
+
+let totalHours = empDailyRecords
+    .filter(emp => emp.dailyHours > 0)
+    .reduce((total, emp) => total + emp.dailyHours, 0);
+
+console.log("Total Employee Wage: $" + totalWages);
+console.log("Total Hours Worked:", totalHours);
+
+
+console.log("Full Working Days:");
+empDailyRecords
+    .filter(emp => emp.dailyHours === FULL_TIME_HOURS)
+    .forEach(emp => console.log(`Day ${emp.dayNum} -> ${emp.dailyHours} hrs`));
+
+
+ partWorkingDayStrArr = empDailyRecords
+    .filter(emp => emp.dailyHours === PART_TIME_HOURS)
+    .map(emp => `Day ${emp.dayNum}`);
+
+console.log("Part Working Days:", partWorkingDayStrArr);
+
+
+ let noWorkingDayNum = empDailyRecords
+    .filter(emp => emp.dailyHours === 0)
+    .map(emp => `Day ${emp.dayNum}`);
+
+console.log("No Working Days:", noWorkingDayNum);
