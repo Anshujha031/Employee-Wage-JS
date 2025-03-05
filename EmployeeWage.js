@@ -29,5 +29,22 @@ switch (empCheck) {
         empHours = 0; 
 }
 
+
+
+
+// uc 3
+function getWorkHours(empCheck) {
+    switch (empCheck) {
+        case PART_TIME:
+            return PART_TIME_HOURS;
+        case FULL_TIME:
+            return FULL_TIME_HOURS;
+        default:
+            return 0; // No Time (Absent)
+    }
+}
+
+empHours = getWorkHours(empCheck);
 let empWage = empHours * WAGE_PER_HOUR;
+
 console.log("Employee Wage: " + empWage);
