@@ -247,13 +247,15 @@ console.log("No Working Days:", noWorkingDayNum);
 
 // uc 11b
 class EmployeePayroll {
-    constructor(id, name, salary) {
+    constructor(id, name, salary , gender, startDate) {
         this.id = id;
         this.name = name;
         this.salary = salary;
+        this.gender = gender;
+        this.startDate = startDate ? new Date(startDate) : new Date();
     }
     toString() {
-        return `ID: ${this.id}, Name: ${this.name}, Salary: $${this.salary}`;
+        return `ID: ${this.id}, Name: ${this.name}, Salary: $${this.salary}, Gender: ${this.gender}, Start Date: ${this.startDate.toDateString()}`;
     }
 }
 let employee1 = new EmployeePayroll(101, "Alice", 50000);
