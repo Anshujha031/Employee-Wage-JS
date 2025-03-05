@@ -245,29 +245,71 @@ console.log("Part Working Days:", partWorkingDayStrArr);
 console.log("No Working Days:", noWorkingDayNum);
 
 
-
-
 class EmployeePayroll {
     constructor(id, name, salary, gender, startDate) {
-        this.id = id;
-        this.salary = salary;
-        this.gender = gender;
-        this.startDate = startDate ? new Date(startDate) : new Date(); 
+        try {
+           
+            if (!this.validateId(id)) {
+                throw new Error("Invalid ID! ID must be a positive non-zero number.");
+            }
+            this.id = id;
 
-        // Validate Name using Regex
-        if (!this.validateName(name)) {
-            throw new Error("Invalid Name! Name must start with an uppercase letter and have at least 3 characters.");
+            
+            if (!this.validateName(name)) {
+                throw new Error("Invalid Name! Name must start with an uppercase letter and have at least 3 characters.");
+            }
+            this.name = name;
+
+            
+            if (!this.validateSalary(salary)) {
+                throw new Error("Invalid Salary! Salary must be a positive non-zero number.");
+            }
+            this.salary = salary;
+
+            
+            if (!this.validateGender(gender)) {
+                throw new Error("Invalid Gender! Gender must be 'M' or 'F'.");
+            }
+            this.gender = gender;
+
+            
+            let dateObj = new Date(startDate);
+            if (!this.validateStartDate(dateObj)) {
+                throw new Error("Invalid Start Date! Date cannot be in the future.");
+            }
+            this.startDate = dateObj;
+
+        } catch (error) {
+            console.error(error.message);
         }
-        this.name = name;
     }
 
-    // Function to Validate Name using Regex
+    
+    validateId(id) {
+        return /^[1-9]\d*$/.test(id); 
+    }
+
+ 
     validateName(name) {
-        const nameRegex = /^[A-Z][a-zA-Z]{2,}$/; 
-        return nameRegex.test(name);
+        return /^[A-Z][a-zA-Z]{2,}$/.test(name); 
     }
 
    
+    validateSalary(salary) {
+        return salary > 0;
+    }
+
+    
+    validateGender(gender) {
+        return /^[MF]$/.test(gender); 
+    }
+
+   
+    validateStartDate(date) {
+        return date <= new Date(); 
+    }
+
+    
     toString() {
         return `ID: ${this.id}, Name: ${this.name}, Salary: $${this.salary}, Gender: ${this.gender}, Start Date: ${this.startDate.toDateString()}`;
     }
@@ -275,22 +317,45 @@ class EmployeePayroll {
 
 
 try {
-    let employee1 = new EmployeePayroll(101, "Alice", 50000, "F", "2023-01-15");
+    let employee1 = new EmployeePayroll(101, "Alice", 50000, "F", "2023-01-15"); 
     console.log(employee1.toString());
 } catch (error) {
     console.error(error.message);
 }
 
 try {
-    let employee2 = new EmployeePayroll(102, "bob", 60000, "M", "2022-05-10"); 
+    let employee2 = new EmployeePayroll(0, "Bob", 40000, "M", "2022-05-10"); 
     console.log(employee2.toString());
 } catch (error) {
     console.error(error.message);
 }
 
 try {
-    let employee3 = new EmployeePayroll(103, "A", 55000, "M", "2024-02-01"); 
+    let employee3 = new EmployeePayroll(103, "aLice", 55000, "F", "2024-02-01"); 
     console.log(employee3.toString());
 } catch (error) {
     console.error(error.message);
 }
+
+try {
+    let employee4 = new EmployeePayroll(104, "John", -2000, "M", "2023-04-20");
+    console.log(employee4.toString());
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    let employee5 = new EmployeePayroll(105, "Mike", 30000, "X", "2023-07-10");
+    console.log(employee5.toString());
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    let employee6 = new EmployeePayroll(106, "Sophia", 45000, "F", "2030-08-21"); 
+    console.log(employee6.toString());
+} catch (error) {
+    console.error(error.message);
+}
+
+
