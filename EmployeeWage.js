@@ -48,3 +48,15 @@ empHours = getWorkHours(empCheck);
 let empWage = empHours * WAGE_PER_HOUR;
 
 console.log("Employee Wage: " + empWage);
+
+//uc 4
+const WORKING_DAYS_IN_MONTH = 20;
+let totalEmpWage = 0;
+
+for (let day = 0; day < WORKING_DAYS_IN_MONTH; day++) {
+    let empCheck = Math.floor(Math.random() * 3); // Generates 0, 1, or 2
+    let empHours = getWorkHours(empCheck);
+    totalEmpWage += empHours * WAGE_PER_HOUR;
+}
+
+console.log("Total Employee Wage for the Month: " + totalEmpWage);
