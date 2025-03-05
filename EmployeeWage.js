@@ -60,3 +60,20 @@ for (let day = 0; day < WORKING_DAYS_IN_MONTH; day++) {
 }
 
 console.log("Total Employee Wage for the Month: " + totalEmpWage);
+
+//uc 5
+const MAX_WORKING_DAYS = 20;
+const MAX_WORKING_HOURS = 160;
+let totalEmpHours = 0;
+let totalWorkingDays = 0;
+
+while (totalEmpHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
+    totalWorkingDays++;
+    let empCheck = Math.floor(Math.random() * 3); // Generates 0, 1, or 2
+    totalEmpHours += getWorkHours(empCheck);
+}
+
+
+console.log("Total Working Days: " + totalWorkingDays);
+console.log("Total Working Hours: " + totalEmpHours);
+console.log("Total Employee Wage: " + totalEmpWage);
