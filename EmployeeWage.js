@@ -243,3 +243,23 @@ console.log("Part Working Days:", partWorkingDayStrArr);
     .map(emp => `Day ${emp.dayNum}`);
 
 console.log("No Working Days:", noWorkingDayNum);
+
+
+// uc 11b
+class EmployeePayroll {
+    constructor(id, name, salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+    toString() {
+        return `ID: ${this.id}, Name: ${this.name}, Salary: $${this.salary}`;
+    }
+}
+let employee1 = new EmployeePayroll(101, "Alice", 50000);
+let employee2 = new EmployeePayroll(102, "Bob", 60000);
+let employee3 = new EmployeePayroll(103, "Charlie", 55000);
+// Storing Employees in an Array
+let employeePayrollList = [employee1, employee2, employee3];
+console.log("Employee Payroll Data:");
+employeePayrollList.forEach(emp => console.log(emp.toString()));
