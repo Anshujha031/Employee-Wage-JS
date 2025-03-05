@@ -100,15 +100,15 @@ let dailyWageMap = new Map();
 
 while (totalEmpHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
     totalWorkingDays++;
-    let empCheck = Math.floor(Math.random() * 3); // Generates 0, 1, or 2
+    let empCheck = Math.floor(Math.random() * 3); 
     let empHours = getWorkHours(empCheck);
     let dailyWage = empHours * WAGE_PER_HOUR;
     dailyWagesArray.push(dailyWage);
-    dailyWageMap.set(totalWorkingDays, dailyWage); // Store day-wise wages in a Map
+    dailyWageMap.set(totalWorkingDays, dailyWage); 
     totalEmpHours += empHours;
 }
 
-// a. Calculate total wage using reduce method
+// Calculate total wage using reduce method
 let totalWage = dailyWagesArray.reduce((total, wage) => total + wage, 0);
 console.log("Total Employee Wage: $" + totalWage);
 
@@ -138,3 +138,20 @@ console.log("Is there any Part-time Wage?:", hasPartTimeWage);
 // g. Find number of days the Employee Worked (days with non-zero wage)
 let totalDaysWorked = dailyWagesArray.filter(wage => wage > 0).length;
 console.log("Total Days Employee Worked:", totalDaysWorked);
+
+
+// uc 8
+while (totalEmpHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
+    totalWorkingDays++;
+    let empCheck = Math.floor(Math.random() * 3); // Generates 0, 1, or 2
+    let empHours = getWorkHours(empCheck);
+    let dailyWage = empHours * WAGE_PER_HOUR;
+    dailyWageMap.set(totalWorkingDays, dailyWage); // Store day-wise wage in Map
+    totalEmpHours += empHours;
+}
+
+
+let totalWage1 = Array.from(dailyWageMap.values()).reduce((total, wage) => total + wage, 0);
+
+console.log("Day-wise Wages:", dailyWageMap);
+console.log("Total Employee Wage: $" + totalWage1);
