@@ -77,3 +77,20 @@ while (totalEmpHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS)
 console.log("Total Working Days: " + totalWorkingDays);
 console.log("Total Working Hours: " + totalEmpHours);
 console.log("Total Employee Wage: " + totalEmpWage);
+
+//uc 6
+
+let dailyWagesArray = [];
+while (totalEmpHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
+    totalWorkingDays++;
+    let empCheck = Math.floor(Math.random() * 3); // Generates 0, 1, or 2
+    let empHours = getWorkHours(empCheck);
+    let dailyWage = empHours * WAGE_PER_HOUR;
+    dailyWagesArray.push(dailyWage); // Store daily wage in array
+    totalEmpHours += empHours;
+}
+
+let totalEmpWageArray = totalEmpHours * WAGE_PER_HOUR;
+console.log("Daily Wages: ", dailyWagesArray);
+console.log("Total Employee Wage: $" + totalEmpWageArray);
+
