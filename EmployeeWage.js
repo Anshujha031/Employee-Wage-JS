@@ -112,30 +112,30 @@ while (totalEmpHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS)
 let totalWage = dailyWagesArray.reduce((total, wage) => total + wage, 0);
 console.log("Total Employee Wage: $" + totalWage);
 
-// b. Show the Day along with Daily Wage using map
+// Show the Day along with Daily Wage using map
 let dailyWageWithDay = dailyWagesArray.map((wage, index) => `Day ${index + 1}: $${wage}`);
 console.log("Day-wise Wages:", dailyWageWithDay);
 
-// c. Show Days when Full-time wage (160) was earned using filter
+//  Show Days when Full-time wage (160) was earned using filter
 let fullTimeWageDays = [...dailyWageMap.entries()]
     .filter(([day, wage]) => wage === FULL_TIME_HOURS * WAGE_PER_HOUR)
     .map(([day, wage]) => `Day ${day}`);
 console.log("Days with Full-time Wage:", fullTimeWageDays);
 
-// d. Find first occurrence when Full Time Wage was earned using find
+// Find first occurrence when Full Time Wage was earned using find
 let firstFullTimeWageDay = [...dailyWageMap.entries()]
     .find(([day, wage]) => wage === FULL_TIME_HOURS * WAGE_PER_HOUR);
 console.log("First Full-time Wage Day:", firstFullTimeWageDay ? `Day ${firstFullTimeWageDay[0]}` : "Not Found");
 
-// e. Check if every element in Full-time Wage array holds Full-time wage
+//  Check if every element in Full-time Wage array holds Full-time wage
 let isEveryFullTimeWage = dailyWagesArray.every(wage => wage === FULL_TIME_HOURS * WAGE_PER_HOUR);
 console.log("Is Every Day a Full-time Wage Day?:", isEveryFullTimeWage);
 
-// f. Check if there is any Part-time Wage using some function
+//  Check if there is any Part-time Wage using some function
 let hasPartTimeWage = dailyWagesArray.some(wage => wage === PART_TIME_HOURS * WAGE_PER_HOUR);
 console.log("Is there any Part-time Wage?:", hasPartTimeWage);
 
-// g. Find number of days the Employee Worked (days with non-zero wage)
+//  Find number of days the Employee Worked (days with non-zero wage)
 let totalDaysWorked = dailyWagesArray.filter(wage => wage > 0).length;
 console.log("Total Days Employee Worked:", totalDaysWorked);
 
@@ -186,3 +186,27 @@ let noWorkingDays = [...dailyHourMap.entries()].filter(([day, hours]) => hours =
 console.log("Full Working Days:", fullWorkingDays);
 console.log("Part Working Days:", partWorkingDays);
 console.log("No Working Days:", noWorkingDays);
+
+
+//uc 10
+
+let empDailyRecords = []; // Array to store objects
+while (totalEmpHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
+    totalWorkingDays++;
+   
+    let empHours = getWorkHours(empCheck);
+    let dailyWage = empHours * WAGE_PER_HOUR;
+
+ 
+    let dailyRecord = {
+        day: totalWorkingDays,
+        hoursWorked: empHours,
+        wageEarned: dailyWage
+    };
+
+    empDailyRecords.push(dailyRecord);
+    totalEmpHours += empHours;
+}
+
+
+console.log("Employee Daily Records:", empDailyRecords);
