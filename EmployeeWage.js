@@ -245,23 +245,52 @@ console.log("Part Working Days:", partWorkingDayStrArr);
 console.log("No Working Days:", noWorkingDayNum);
 
 
-// uc 11b
+
+
 class EmployeePayroll {
-    constructor(id, name, salary , gender, startDate) {
+    constructor(id, name, salary, gender, startDate) {
         this.id = id;
-        this.name = name;
         this.salary = salary;
         this.gender = gender;
-        this.startDate = startDate ? new Date(startDate) : new Date();
+        this.startDate = startDate ? new Date(startDate) : new Date(); 
+
+        // Validate Name using Regex
+        if (!this.validateName(name)) {
+            throw new Error("Invalid Name! Name must start with an uppercase letter and have at least 3 characters.");
+        }
+        this.name = name;
     }
+
+    // Function to Validate Name using Regex
+    validateName(name) {
+        const nameRegex = /^[A-Z][a-zA-Z]{2,}$/; 
+        return nameRegex.test(name);
+    }
+
+   
     toString() {
         return `ID: ${this.id}, Name: ${this.name}, Salary: $${this.salary}, Gender: ${this.gender}, Start Date: ${this.startDate.toDateString()}`;
     }
 }
-let employee1 = new EmployeePayroll(101, "Alice", 50000);
-let employee2 = new EmployeePayroll(102, "Bob", 60000);
-let employee3 = new EmployeePayroll(103, "Charlie", 55000);
-// Storing Employees in an Array
-let employeePayrollList = [employee1, employee2, employee3];
-console.log("Employee Payroll Data:");
-employeePayrollList.forEach(emp => console.log(emp.toString()));
+
+
+try {
+    let employee1 = new EmployeePayroll(101, "Alice", 50000, "F", "2023-01-15");
+    console.log(employee1.toString());
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    let employee2 = new EmployeePayroll(102, "bob", 60000, "M", "2022-05-10"); 
+    console.log(employee2.toString());
+} catch (error) {
+    console.error(error.message);
+}
+
+try {
+    let employee3 = new EmployeePayroll(103, "A", 55000, "M", "2024-02-01"); 
+    console.log(employee3.toString());
+} catch (error) {
+    console.error(error.message);
+}
